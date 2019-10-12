@@ -1,0 +1,9 @@
+.vscode
+venv
+*.pyc
+staticfiles
+.env
+db.sqlite3
+.idea
+.DS_Store
+*.mp4
