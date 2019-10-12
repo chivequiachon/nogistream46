@@ -20,14 +20,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ['SECRET_KEY']
+SECRET_KEY = '8e=$+d+e&umbtt2j2$1hk5b&vcwl6f7ct-lm!e9mjhr4t+kjs3'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = []
 
-VIEW_COUNT_URL = os.environ['VIEW_COUNT_URL']
 
 # Application definition
 
@@ -77,14 +76,11 @@ WSGI_APPLICATION = 'nogistream_final.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': os.environ['DB_ENGINE'],
-        'NAME': os.environ['DB_NAME'],
-        'USER': os.environ['DB_USER'],
-        'PASSWORD': os.environ['DB_PASS'],
-        'HOST': os.environ['DB_HOST'],
-        'PORT': os.environ['DB_PORT'],
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -134,7 +130,7 @@ django_heroku.settings(locals())
 CLOUDINARY_NAME = "dr031frrx"
 # Set cloudinary
 cloudinary.config( 
-  cloud_name = CLOUDINARY_NAME,
-  api_key = os.environ['CLOUDINARY_API_KEY'],
-  api_secret = os.environ['CLOUDINARY_API_SECRET'] 
+  cloud_name = CLOUDINARY_NAME, 
+  api_key = "348234738768825", 
+  api_secret = "B_z9QxrRd21a5qz3sLvKQLjIhXA" 
 )
