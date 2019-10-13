@@ -1,228 +1,146 @@
-{% load staticfiles %}
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
-    <link
-      href="https://fonts.googleapis.com/css?family=Poppins&display=swap"
-      rel="stylesheet"
-    />
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-
-    <title>Nogistream46</title>
-  </head>
-  <body>
-    <div id="mainbar">
-      <nav>
-        <ul id="menu">
-          <li><button>HOME</button></li>
-          <li><button>MUSIC</button></li>
-          <li><button>VARIETY SHOWS</button></li>
-          <li><button>SHOWROOMS</button></li>
-          <li><button>GUESTINGS</button></li>
-        </ul>
-        <div id="search">
-          <input type="text" />
-          <button>SEARCH</button>
-        </div>
-        <div id="burger">
-          <div class="line"></div>
-          <div class="line"></div>
-          <div class="line"></div>
-        </div>
-
-        <div id="search-btn">
-          <i class="fas fa-search"></i>
-        </div>
-      </nav>
-    </div>
-
-    <div id="mobile-menu">
-      <div id="close-mobile-menu">
-        X
+{% extends 'base.html'%} {% load static %} {% block content %}
+<div id="view-content-section" style="padding-top: 120px;">
+  <div id="view-wrapper">
+    <div id="view-section">
+      <div class="title-section">
+        <h1>
+          Kokuhaku no Junban
+        </h1>
+        <small>Joshikou Quartet</small>
       </div>
-      <nav>
-        <ul>
-          <li><button>HOME</button></li>
-          <li><button>MUSIC</button></li>
-          <li><button>VARIETY SHOWS</button></li>
-          <li><button>SHOWROOMS</button></li>
-          <li><button>GUESTINGS</button></li>
-        </ul>
-      </nav>
-    </div>
-
-    <div id="mobile-search">
-      <input type="text" />
-      <button>SEARCH</button>
-    </div>
-
-    <div id="view-content-section" style="padding-top: 120px;">
-      <div id="view-wrapper">
-        <div id="view-section">
-          <div class="title-section">
-            <h1>
-              Kokuhaku no Junban
-            </h1>
-            <small>Joshikou Quartet</small>
-          </div>
-          <div class="stats">
-            <p>
-              1,023,203 views <bold>|</bold> Published on September 19, 2019
-            </p>
-          </div>
-          <div id="video-section">
-            <div
-              style="width: 100%; height: 0px; position: relative; padding-bottom: 56.250%;"
-            >
-              <iframe
-                src="https://streamable.com/s/ffosh/rizzpy"
-                frameborder="0"
-                width="100%"
-                height="100%"
-                allowfullscreen
-                style="width: 100%; height: 100%; position: absolute;"
-              ></iframe>
-            </div>
-          </div>
-          <div id="description-parent">
-            <div id="description">
-              <h3>Description</h3>
-              <p>Original Japanese: 告白の順番</p>
-              <br />
-              <p>
-                Wakatsuki Yumi's last unit song from the 22nd single Kaerimichi
-                wa Toomawari Shitaku Naru (帰り道は遠回りしたくなる)
-              </p>
-              <br />
-              <p>
-                Joshikou Quartet members:<br />Wakatsuki Yumi (若月佑美)<br />Sakurai
-                Reika (桜井玲香)<br />Nakada Kana (中田花奈)<br />Akimoto
-                Manatsu (秋元真夏)
-              </p>
-              <br />
-              <p>Credits to Beam!Subs team for the english subtitles!</p>
-            </div>
-            <button style="margin: 5px auto 0 auto;" id="see-more-btn">
-              See more
-            </button>
-          </div>
-        </div>
-
-        <div id="experiment">
-          <div class="title-section">
-            <h3>Other Videos</h3>
-          </div>
-          <ul>
-            <li>
-              <a
-                style="display: -webkit-flex; padding-top: 0px;"
-                href="view.html"
-              >
-                <img
-                  src="https://res.cloudinary.com/dr031frrx/image/upload/v1555853606/nogistream/against.jpg"
-                  alt=""
-                />
-              </a>
-              <div>
-                <a href="#">Against</a>
-                <small>1st Gen</small>
-
-                <p>3,783,103 views</p>
-              </div>
-            </li>
-            <li>
-              <a
-                style="display: -webkit-flex; padding-top: 0px;"
-                href="view.html"
-              >
-                <img
-                  src="https://res.cloudinary.com/dr031frrx/image/upload/v1555853606/nogistream/against.jpg"
-                  alt=""
-                />
-              </a>
-              <div>
-                <a href="#">Against</a>
-                <small>1st Gen</small>
-
-                <p>3,783,103 views</p>
-              </div>
-            </li>
-            <li>
-              <a
-                style="display: -webkit-flex; padding-top: 0px;"
-                href="view.html"
-              >
-                <img
-                  src="https://res.cloudinary.com/dr031frrx/image/upload/v1555853606/nogistream/against.jpg"
-                  alt=""
-                />
-              </a>
-              <div>
-                <a href="#">Against</a>
-                <small>1st Gen</small>
-
-                <p>3,783,103 views</p>
-              </div>
-            </li>
-            <li>
-              <a
-                style="display: -webkit-flex; padding-top: 0px;"
-                href="view.html"
-              >
-                <img
-                  src="https://res.cloudinary.com/dr031frrx/image/upload/v1555853606/nogistream/against.jpg"
-                  alt=""
-                />
-              </a>
-              <div>
-                <a href="#">Against</a>
-                <small>1st Gen</small>
-
-                <p>3,783,103 views</p>
-              </div>
-            </li>
-            <li>
-              <a
-                style="display: -webkit-flex; padding-top: 0px;"
-                href="view.html"
-              >
-                <img
-                  src="https://res.cloudinary.com/dr031frrx/image/upload/v1555853606/nogistream/against.jpg"
-                  alt=""
-                />
-              </a>
-              <div>
-                <a href="#">Against</a>
-                <small>1st Gen</small>
-
-                <p>3,783,103 views</p>
-              </div>
-            </li>
-            <li>
-              <a
-                style="display: -webkit-flex; padding-top: 0px;"
-                href="view.html"
-              >
-                <img
-                  src="https://res.cloudinary.com/dr031frrx/image/upload/v1555853606/nogistream/against.jpg"
-                  alt=""
-                />
-              </a>
-              <div>
-                <a href="#">Against</a>
-                <small>1st Gen</small>
-
-                <p>3,783,103 views</p>
-              </div>
-            </li>
-          </ul>
+      <div class="stats">
+        <p>1,023,203 views <bold>|</bold> Published on September 19, 2019</p>
+      </div>
+      <div id="video-section">
+        <div
+          style="width: 100%; height: 0px; position: relative; padding-bottom: 56.250%;"
+        >
+          <iframe
+            src="https://streamable.com/s/ffosh/rizzpy"
+            frameborder="0"
+            width="100%"
+            height="100%"
+            allowfullscreen
+            style="width: 100%; height: 100%; position: absolute;"
+          ></iframe>
         </div>
       </div>
+      <div id="description-parent">
+        <div id="description">
+          <h3>Description</h3>
+          <p>Original Japanese: 告白の順番</p>
+          <br />
+          <p>
+            Wakatsuki Yumi's last unit song from the 22nd single Kaerimichi wa
+            Toomawari Shitaku Naru (帰り道は遠回りしたくなる)
+          </p>
+          <br />
+          <p>
+            Joshikou Quartet members:<br />Wakatsuki Yumi (若月佑美)<br />Sakurai
+            Reika (桜井玲香)<br />Nakada Kana (中田花奈)<br />Akimoto Manatsu
+            (秋元真夏)
+          </p>
+          <br />
+          <p>Credits to Beam!Subs team for the english subtitles!</p>
+        </div>
+        <button style="margin: 5px auto 0 auto;" id="see-more-btn">
+          See more
+        </button>
+      </div>
     </div>
-    <script src="{% static 'js/view.js' %}"></script>
-  </body>
-</html>
+
+    <div id="experiment">
+      <div class="title-section">
+        <h3>Other Videos</h3>
+      </div>
+      <ul>
+        <li>
+          <a style="display: -webkit-flex; padding-top: 0px;" href="view.html">
+            <img
+              src="https://res.cloudinary.com/dr031frrx/image/upload/v1555853606/nogistream/against.jpg"
+              alt=""
+            />
+          </a>
+          <div>
+            <a href="#">Against</a>
+            <small>1st Gen</small>
+
+            <p>3,783,103 views</p>
+          </div>
+        </li>
+        <li>
+          <a style="display: -webkit-flex; padding-top: 0px;" href="view.html">
+            <img
+              src="https://res.cloudinary.com/dr031frrx/image/upload/v1555853606/nogistream/against.jpg"
+              alt=""
+            />
+          </a>
+          <div>
+            <a href="#">Against</a>
+            <small>1st Gen</small>
+
+            <p>3,783,103 views</p>
+          </div>
+        </li>
+        <li>
+          <a style="display: -webkit-flex; padding-top: 0px;" href="view.html">
+            <img
+              src="https://res.cloudinary.com/dr031frrx/image/upload/v1555853606/nogistream/against.jpg"
+              alt=""
+            />
+          </a>
+          <div>
+            <a href="#">Against</a>
+            <small>1st Gen</small>
+
+            <p>3,783,103 views</p>
+          </div>
+        </li>
+        <li>
+          <a style="display: -webkit-flex; padding-top: 0px;" href="view.html">
+            <img
+              src="https://res.cloudinary.com/dr031frrx/image/upload/v1555853606/nogistream/against.jpg"
+              alt=""
+            />
+          </a>
+          <div>
+            <a href="#">Against</a>
+            <small>1st Gen</small>
+
+            <p>3,783,103 views</p>
+          </div>
+        </li>
+        <li>
+          <a style="display: -webkit-flex; padding-top: 0px;" href="view.html">
+            <img
+              src="https://res.cloudinary.com/dr031frrx/image/upload/v1555853606/nogistream/against.jpg"
+              alt=""
+            />
+          </a>
+          <div>
+            <a href="#">Against</a>
+            <small>1st Gen</small>
+
+            <p>3,783,103 views</p>
+          </div>
+        </li>
+        <li>
+          <a style="display: -webkit-flex; padding-top: 0px;" href="view.html">
+            <img
+              src="https://res.cloudinary.com/dr031frrx/image/upload/v1555853606/nogistream/against.jpg"
+              alt=""
+            />
+          </a>
+          <div>
+            <a href="#">Against</a>
+            <small>1st Gen</small>
+
+            <p>3,783,103 views</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<script src="{% static 'js/view.js' %}"></script>
+{% endblock %}

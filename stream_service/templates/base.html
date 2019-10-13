@@ -1,0 +1,64 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <title>Nogistream46</title>
+  </head>
+  <body>
+    <div id="mainbar">
+      <nav>
+        <ul id="menu">
+          <li><button>HOME</button></li>
+          <li><button>MUSIC</button></li>
+          <li><button>VARIETY SHOWS</button></li>
+          <li><button>SHOWROOMS</button></li>
+          <li><button>GUESTINGS</button></li>
+        </ul>
+        <div id="search">
+          <input type="text" />
+          <button>SEARCH</button>
+        </div>
+        <div id="burger">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+
+        <div id="search-btn">
+          <i class="fas fa-search"></i>
+        </div>
+      </nav>
+    </div>
+
+    <div id="mobile-menu">
+      <div id="close-mobile-menu">
+        X
+      </div>
+      <nav>
+        <ul>
+          <li><button>HOME</button></li>
+          <li><button>MUSIC</button></li>
+          <li><button>VARIETY SHOWS</button></li>
+          <li><button>SHOWROOMS</button></li>
+          <li><button>GUESTINGS</button></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div id="mobile-search">
+      <input type="text" />
+      <button>SEARCH</button>
+    </div>
+
+    {% block content %} {% endblock %}
+  </body>
+</html>
