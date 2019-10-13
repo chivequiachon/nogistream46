@@ -27,7 +27,7 @@ DEBUG = False
 
 ALLOWED_HOSTS = []
 
-
+VIEW_COUNT_URL = os.environ['VIEW_COUNT_URL']
 
 # Application definition
 

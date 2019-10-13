@@ -1,4 +1,4 @@
-{% extends 'base.html'%} {% load static %} {% block content %}
+{% extends 'base.html'%} {% load static %} {% block content %} {% if mvs %}
 <div class="content-section" style="padding-top:120px;">
   <div class="title-section">
     <h1>
@@ -8,7 +8,19 @@
   </div>
   <!--div id="mv-list"-->
   <div id="mv-list">
+    {% for mv in mvs %}
     <div>
+      <a style="display: -webkit-flex; padding-top: 0px;" href="#">
+        <img src="{{ cloudinary_img_url }}/{{ mv.name_in_code|add:'.jpg' }}" alt="" />
+      </a>
+      <a href="#">{{ mv.title }}</a>
+      <small>{{ mv.performer_name }}</small>
+
+      <p>{{ mv.view_count }} views</p>
+    </div>
+    {% endfor %}
+
+    <!--div>
       <a style="display: -webkit-flex; padding-top: 0px;" href="view.html">
         <img
           src="https://res.cloudinary.com/dr031frrx/image/upload/v1555853606/nogistream/kokuhaku_no_junban.jpg"
@@ -71,8 +83,10 @@
 
       <p>3,783,103 views</p>
     </div>
+
   </div>
 </div>
+{% endif %}
 
 <div class="section-divider"></div>
 
@@ -129,7 +143,7 @@
       <small>Inconsistent Schedule</small>
 
       <p>39 Episodes (ongoing)</p>
-    </div>
+    </div-->
   </div>
 </div>
 <script src="{% static 'js/app.js' %}"></script>

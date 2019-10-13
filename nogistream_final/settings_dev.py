@@ -27,6 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+VIEW_COUNT_URL = "https://script.google.com/macros/s/AKfycbyEVnJMwkJ-mn_5qqYQlK77dZkdniB38P6x3a_VunGMrnYgOGc/exec"
+
 
 # Application definition
 
