@@ -19,6 +19,7 @@ def retrieve_view_count(videos):
 
     response = requests.get(url)
     json_data = response.json()
+    print(json_data)
 
     success = json_data['success']
     if success:
