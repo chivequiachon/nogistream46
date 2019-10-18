@@ -313,6 +313,10 @@ body {
   background-color: rgba(96, 14, 100, 0.6);
 }
 
+#mobile-menu a {
+  width: 100%;
+}
+
 #mobile-search {
   width: 300px;
   height: 60px;
