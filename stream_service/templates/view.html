@@ -35,7 +35,8 @@
         <li>
           <a style="display: -webkit-flex; padding-top: 0px;"
             href="{% url 'view_page' name_in_code=other_video.name_in_code %}">
-            <img src="{{ cloudinary_img_url }}/{{ other_video.name_in_code|add:'.jpg' }}" alt="" />
+            <img src="{{ cloudinary_img_url }}/{{ other_video.name_in_code|add:'.jpg' }}" alt="" width="160px"
+              height="90px" />
           </a>
           <div>
             <a href="{% url 'view_page' name_in_code=other_video.name_in_code %}">{{ other_video.title }}</a>
