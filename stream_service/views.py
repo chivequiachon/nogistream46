@@ -3,6 +3,8 @@ from django.http import HttpResponse, JsonResponse
 from django.urls import reverse
 from django.conf import settings
 from django.utils import timezone
+from django.template.loader import render_to_string
+from django.core import serializers
 
 import requests
 
@@ -41,6 +43,50 @@ def retrieve_view_count_of_video(video):
 
 def homepage(request):
     return redirect(reverse('list_page'))
+
+def music_list_lazy_load(request):
+    if request.is_ajax():
+        html_template = '''
+<div>
+    <a style="display: -webkit-flex; padding-top: 0px;" href="%s">
+    <img src="%s/%s.jpg" alt="" />
+    </a>
+    <a href="%s">%s</a>
+    <small>%s</small>
+
+    <p>%s views</p>
+</div>
+        '''
+        mv_list = []
+        cloudinary_img_url = \
+            "https://res.cloudinary.com/%s/image/upload/v1555853606/nogistream" % settings.CLOUDINARY_NAME
+        mvs = MvInfo.objects.filter(is_disabled=False).order_by('published_date')
+        success = retrieve_view_count(mvs)
+        
+        if success:
+            for i in mvs:
+                link_to_view = reverse('view_page', kwargs={'name_in_code':i.name_in_code})
+                x = html_template % (link_to_view, cloudinary_img_url, i.name_in_code, link_to_view, i.title, i.performer_name, i.view_count)
+                mv_list.append(x)
+            return HttpResponse(mv_list)
+        else:
+            return HttpResponse(status_code=503) # Service Unavailable
+    else:
+        return HttpResponse(status_code=503) # Service Unavailable
+
+def music_list_page(request):
+    # Retrieve available mvs
+    mv_list = MvInfo.objects.filter(is_disabled=False).order_by('published_date')
+    success = retrieve_view_count(mv_list)
+
+    if success:
+        # Create url for images stored in cloudinary
+        cloudinary_img_url = \
+            "https://res.cloudinary.com/%s/image/upload/v1555853606/nogistream" % settings.CLOUDINARY_NAME
+
+        return render(request, "music.html", {'mvs': mv_list, 'cloudinary_img_url': cloudinary_img_url})
+    else:
+        return HttpResponse(status_code=503) # Service Unavailable
 
 def list_page(request):
     # Retrieve available mvs

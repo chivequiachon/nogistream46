@@ -9,6 +9,8 @@
   <link rel="stylesheet" href="{% static 'css/style.css' %}" />
   <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet" />
   <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
   <title>Nogistream46</title>
 </head>
 
@@ -17,7 +19,7 @@
     <nav>
       <ul id="menu">
         <li><a href="{% url 'homepage' %}"><button>HOME</button></a></li>
-        <li><button>MUSIC</button></li>
+        <li><a href="{% url 'music_list_page' %}"><button>MUSIC</button></a></li>
         <li><button>VARIETY SHOWS</button></li>
         <li><button>SHOWROOMS</button></li>
         <li><button>GUESTINGS</button></li>
