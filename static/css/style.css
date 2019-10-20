@@ -159,6 +159,12 @@ body {
   color: rgb(122, 122, 122);
 }
 
+#loader-section {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
 /* SHOWS CONTENT */
 #show-list {
   display: flex;
@@ -309,12 +315,12 @@ body {
   font-size: 13px;
 }
 
-#mobile-menu button:hover {
-  background-color: rgba(96, 14, 100, 0.6);
-}
-
 #mobile-menu a {
   width: 100%;
+}
+
+#mobile-menu button:hover {
+  background-color: rgba(96, 14, 100, 0.6);
 }
 
 #mobile-search {

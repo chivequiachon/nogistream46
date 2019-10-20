@@ -2,7 +2,7 @@
 {% load static %}
 {% block content %}
 {% if mvs %}
-<div class="content-section" style="padding-top:120px;">
+<div id="content" class="content-section" style="padding-top:120px;">
   <div class="title-section">
     <h1>
       Nogizaka Music
@@ -62,23 +62,42 @@
 
       <p>3,783,103 views</p>
     </div>
+    <div>
+      <a style="display: -webkit-flex; padding-top: 0px;" href="view.html">
+        <img src="https://res.cloudinary.com/dr031frrx/image/upload/v1555853606/nogistream/against.jpg" alt="" />
+      </a>
+      <a href="#">Against</a>
+      <small>1st Gen</small>
+
+      <p>3,783,103 views</p>
+    </div>
   </div>
 </div>
 {% endif %}
 <script src="{% static 'js/app.js' %}"></script>
 <script>
+  var isLoading = false;
   $(window).scroll(function () {
-    if ($(window).scrollTop() + $(window).height() == $(document).height()) {
-      $.ajax({
-        url: '{% url 'music_list_lazy' %}',
-        type: 'get',
-        success: function (data) {
-          $("#mv-list").append(data);
-        },
-        failure: function (data) {
-          console.log('got an error: forum_updates');
-        }
-      });
+    if (!isLoading) {
+      if ($(window).scrollTop() + $(window).height() == $(document).height()) {
+        isLoading = true;
+        $.ajax({
+          url: '{% url 'music_list_lazy' %}',
+          type: 'get',
+          beforeSend: function () {
+            var spinner = "<div id=\"loader-section\"><img src=\"{% static 'img/loader.gif' %}\" width=\"75px\" /></div>";
+            $("#mv-list").append(spinner);
+          },
+          success: function (data) {
+            $("#loader-section").remove();
+            $("#mv-list").append(data);
+            isLoading = false;
+          },
+          failure: function (data) {
+            console.log('got an error: forum_updates');
+          }
+        });
+      }
     }
   });
 </script>
