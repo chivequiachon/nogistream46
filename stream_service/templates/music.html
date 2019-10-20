@@ -77,21 +77,30 @@
 <script src="{% static 'js/app.js' %}"></script>
 <script>
   var isLoading = false;
+  var page = 1;
   $(window).scroll(function () {
     if (!isLoading) {
       if ($(window).scrollTop() + $(window).height() == $(document).height()) {
         isLoading = true;
         $.ajax({
-          url: '{% url 'music_list_lazy' %}',
+          url: '{% url 'music_list_lazy' %}?page=' + page,
           type: 'get',
+          dataType: 'json',
           beforeSend: function () {
             var spinner = "<div id=\"loader-section\"><img src=\"{% static 'img/loader.gif' %}\" width=\"75px\" /></div>";
             $("#mv-list").append(spinner);
           },
           success: function (data) {
-            $("#loader-section").remove();
-            $("#mv-list").append(data);
-            isLoading = false;
+            console.log(data.status);
+            if (data.status == "success") {
+              $("#loader-section").remove();
+              $("#mv-list").append(data.data);
+              isLoading = false;
+              page++;
+            } else if (data.status == "error") {
+              $("#loader-section").remove();
+              isLoading = true;
+            }
           },
           failure: function (data) {
             console.log('got an error: forum_updates');

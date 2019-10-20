@@ -5,6 +5,7 @@ from django.conf import settings
 from django.utils import timezone
 from django.template.loader import render_to_string
 from django.core import serializers
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 import requests
 
@@ -60,7 +61,19 @@ def music_list_lazy_load(request):
         mv_list = []
         cloudinary_img_url = \
             "https://res.cloudinary.com/%s/image/upload/v1555853606/nogistream" % settings.CLOUDINARY_NAME
-        mvs = MvInfo.objects.filter(is_disabled=False).order_by('published_date')
+
+        retreived_mvs = MvInfo.objects.filter(is_disabled=False).order_by('published_date')
+
+        paginator = Paginator(retreived_mvs, 4) # Allow only 4 pages for each page
+        page = int(request.GET.get('page', 1))
+        json_response = json.dumps({'status': 'error'}).encode('utf-8')
+        try:
+            mvs = paginator.page(page)
+        except PageNotAnInteger:
+            return HttpResponse(json_response)
+        except EmptyPage:
+            return HttpResponse(json_response)
+    
         success = retrieve_view_count(mvs)
         
         if success:
@@ -68,7 +81,9 @@ def music_list_lazy_load(request):
                 link_to_view = reverse('view_page', kwargs={'name_in_code':i.name_in_code})
                 x = html_template % (link_to_view, cloudinary_img_url, i.name_in_code, link_to_view, i.title, i.performer_name, i.view_count)
                 mv_list.append(x)
-            return HttpResponse(mv_list)
+
+            json_response = json.dumps({'status': 'success', 'data': ''.join(mv_list)})
+            return HttpResponse(json_response.encode('utf-8'))
         else:
             return HttpResponse(status_code=503) # Service Unavailable
     else:
