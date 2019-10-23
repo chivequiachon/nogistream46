@@ -64,8 +64,8 @@ def music_list_lazy_load(request):
 
         retreived_mvs = MvInfo.objects.filter(is_disabled=False).order_by('published_date')
 
-        paginator = Paginator(retreived_mvs, 4) # Allow only 4 pages for each page
-        page = int(request.GET.get('page', 1))
+        paginator = Paginator(retreived_mvs, 8) # Allow only 4 pages for each page
+        page = int(request.GET.get('page', 2))
         json_response = json.dumps({'status': 'error'}).encode('utf-8')
         try:
             mvs = paginator.page(page)
@@ -91,7 +91,7 @@ def music_list_lazy_load(request):
 
 def music_list_page(request):
     # Retrieve available mvs
-    mv_list = MvInfo.objects.filter(is_disabled=False).order_by('published_date')
+    mv_list = MvInfo.objects.filter(is_disabled=False).order_by('published_date')[:8]
     success = retrieve_view_count(mv_list)
 
     if success:
