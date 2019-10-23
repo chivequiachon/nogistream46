@@ -22,55 +22,6 @@
       <p>{{ mv.view_count }} views</p>
     </div>
     {% endfor %}
-    <div>
-      <a style="display: -webkit-flex; padding-top: 0px;" href="view.html">
-        <img
-          src="https://res.cloudinary.com/dr031frrx/image/upload/v1555853606/nogistream/kaerimichi_wa_toomawari_shitaku_naru.jpg"
-          alt="" />
-      </a>
-      <a href="#">Kaerimichi wa Toomawari Shitaku Naru</a>
-      <small>Senbatsu</small>
-
-      <p>11,723,203 views</p>
-    </div>
-    <div>
-      <a style="display: -webkit-flex; padding-top: 0px;" href="view.html">
-        <img src="https://res.cloudinary.com/dr031frrx/image/upload/v1555853606/nogistream/against.jpg" alt="" />
-      </a>
-      <a href="#">Against</a>
-      <small>1st Gen</small>
-
-      <p>3,783,103 views</p>
-    </div>
-    <div>
-      <a style="display: -webkit-flex; padding-top: 0px;" href="view.html">
-        <img
-          src="https://res.cloudinary.com/dr031frrx/image/upload/v1555853606/nogistream/kaerimichi_wa_toomawari_shitaku_naru.jpg"
-          alt="" />
-      </a>
-      <a href="#">Kaerimichi wa Toomawari Shitaku Naru</a>
-      <small>Senbatsu</small>
-
-      <p>11,723,203 views</p>
-    </div>
-    <div>
-      <a style="display: -webkit-flex; padding-top: 0px;" href="view.html">
-        <img src="https://res.cloudinary.com/dr031frrx/image/upload/v1555853606/nogistream/against.jpg" alt="" />
-      </a>
-      <a href="#">Against</a>
-      <small>1st Gen</small>
-
-      <p>3,783,103 views</p>
-    </div>
-    <div>
-      <a style="display: -webkit-flex; padding-top: 0px;" href="view.html">
-        <img src="https://res.cloudinary.com/dr031frrx/image/upload/v1555853606/nogistream/against.jpg" alt="" />
-      </a>
-      <a href="#">Against</a>
-      <small>1st Gen</small>
-
-      <p>3,783,103 views</p>
-    </div>
   </div>
 </div>
 {% endif %}
@@ -83,7 +34,7 @@
       if ($(window).scrollTop() + $(window).height() == $(document).height()) {
         isLoading = true;
         $.ajax({
-          url: '{% url 'music_list_lazy' %}?page=' + page,
+          url: "{% url 'music_list_lazy' %}?page=" + page,
           type: 'get',
           dataType: 'json',
           beforeSend: function () {
