@@ -26,7 +26,8 @@ def retrieve_view_count(videos):
     success = json_data['success']
     if success:
         for video in videos:
-            video.view_count = json_data[video.mv_id]
+            video.update_view_count(json_data[video.mv_id])
+            #video.view_count = json_data[video.mv_id]
 
     return success
 
@@ -37,7 +38,8 @@ def retrieve_view_count_of_video(video):
 
     success = json_data['success']
     if success:
-        video.view_count = json_data[video.mv_id]
+        video.update_view_count(json_data[video.mv_id])
+        #video.view_count = json_data[video.mv_id]
 
     return success
 
