@@ -17,8 +17,9 @@ def retrieve_view_count(videos):
     url = settings.VIEW_COUNT_URL
     char = '?'
     for video in videos:
-        url += "%cid=%s" % (char, video.mv_id)
-        char = '&'
+        if video.should_update_view_count():
+            url += "%cid=%s" % (char, video.mv_id)
+            char = '&'
 
     response = requests.get(url)
     json_data = response.json()
@@ -26,22 +27,24 @@ def retrieve_view_count(videos):
     success = json_data['success']
     if success:
         for video in videos:
-            video.update_view_count(json_data[video.mv_id])
-            #video.view_count = json_data[video.mv_id]
+            if video.should_update_view_count():
+                video.update_view_count(json_data[video.mv_id])
 
     return success
 
 def retrieve_view_count_of_video(video):
-    url = settings.VIEW_COUNT_URL + "?id=" + video.mv_id
-    response = requests.get(url)
-    json_data = response.json()
+    if video.should_update_view_count():    
+        url = settings.VIEW_COUNT_URL + "?id=" + video.mv_id
+        response = requests.get(url)
+        json_data = response.json()
 
-    success = json_data['success']
-    if success:
-        video.update_view_count(json_data[video.mv_id])
-        #video.view_count = json_data[video.mv_id]
+        success = json_data['success']
+        if success:
+            video.update_view_count(json_data[video.mv_id])
 
-    return success
+        return success
+    else:
+        return False
 
 
 def homepage(request):

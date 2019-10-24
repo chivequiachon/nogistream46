@@ -27,14 +27,15 @@ class MvInfo(models.Model):
 
 
     def update_view_count(self, view_count):
+        self.view_count = view_count
+        self.date_of_update = timezone.now()
+        self.save()
+
+    def should_update_view_count(self):
         current_min = int((timezone.now()).strftime("%M"))
         updated_min = int(self.date_of_update.strftime("%M"))
-
-        self.view_count = view_count
         time_delta = current_min - updated_min
-        if time_delta < 0 or time_delta >= 15:
-            self.date_of_update = timezone.now()
-            self.save()
+        return time_delta < 0 or time_delta >= 15
 
     def __str__(self):
         return "%s(%s) - %s" % (self.title, self.performer_name, self.name_in_code)
