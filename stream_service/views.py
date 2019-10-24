@@ -16,35 +16,45 @@ import json
 def retrieve_view_count(videos):
     url = settings.VIEW_COUNT_URL
     char = '?'
+    should_fetch = False
     for video in videos:
         if video.should_update_view_count():
             url += "%cid=%s" % (char, video.mv_id)
             char = '&'
-
-    response = requests.get(url)
-    json_data = response.json()
-
-    success = json_data['success']
-    if success:
-        for video in videos:
-            if video.should_update_view_count():
-                video.update_view_count(json_data[video.mv_id])
-
-    return success
-
-def retrieve_view_count_of_video(video):
-    if video.should_update_view_count():    
-        url = settings.VIEW_COUNT_URL + "?id=" + video.mv_id
+            should_fetch = True
+    
+    if should_fetch:
         response = requests.get(url)
         json_data = response.json()
 
-        success = json_data['success']
+        success = json_data.get('success', False)
+        if success:
+            for video in videos:
+                if video.should_update_view_count():
+                    video.update_view_count(json_data[video.mv_id])
+
+        return success
+    else:
+        return True
+
+def retrieve_view_count_of_video(video):
+    url = settings.VIEW_COUNT_URL
+    should_fetch = False
+    if video.should_update_view_count():    
+        url += "?id=%" + video.mv_id
+        should_fetch = True
+
+    if should_fetch:
+        response = requests.get(url)
+        json_data = response.json()
+
+        success = json_data.get('success', False)
         if success:
             video.update_view_count(json_data[video.mv_id])
 
         return success
     else:
-        return False
+        return True
 
 
 def homepage(request):
