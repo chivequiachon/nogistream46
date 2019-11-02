@@ -69,7 +69,7 @@ class ShowEpisode(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField()
     
-    show = models.ForeignKey(ShowInfo, on_delete=models.CASCADE, default='1')
+    show = models.ForeignKey(ShowInfo, on_delete=models.CASCADE, default='1', related_name='episodes')
 
     # The name used in urls and cloudinary img files
     name_in_code = models.CharField(max_length=50)

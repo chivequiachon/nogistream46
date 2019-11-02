@@ -119,7 +119,12 @@ def music_list_page(request):
         return HttpResponse(status_code=503) # Service Unavailable
 
 def shows_list_page(request):
-    return render(request, "shows.html")
+    show_list = ShowInfo.objects.filter(is_disabled=False)
+    # Create url for images stored in cloudinary
+    cloudinary_img_url = \
+        "https://res.cloudinary.com/%s/image/upload/v1555853606/nogistream" % settings.CLOUDINARY_NAME
+        
+    return render(request, "shows.html", {'shows': show_list, 'cloudinary_img_url': cloudinary_img_url})
 
 def list_page(request):
     # Retrieve available mvs

@@ -9,51 +9,18 @@
     <small>All Shows</small>
   </div>
   <div id="show-list">
+    {% for show in shows %}
     <div>
       <a style="display: -webkit-flex; padding-top: 0px;" href="#">
-        <img src="https://res.cloudinary.com/dr031frrx/image/upload/v1568734174/nogistream/nogichuu.jpg" alt="" />
+        <img src="{{ cloudinary_img_url }}/{{ show.name_in_code|add:'.jpg' }}" alt="" />
       </a>
-      <a href="#">乃木坂工事中</a>
-      <small>Every Sunday 12:00 MN JST</small>
+      <a href="#">{{ show.title }}</a>
+      <small>{{ show.small_info }}</small>
 
-      <p>298 Episodes (ongoing)</p>
+      <p>{{ show.episodes.all.count }} Episode(s)</p>
     </div>
+    {% endfor %}
   </div>
 </div>
 <script src="{% static 'js/app.js' %}"></script>
-<script>
-  /*var isLoading = false;
-  var page = 2;
-  $(window).scroll(function () {
-    if (!isLoading) {
-      if ($(window).scrollTop() + $(window).height() == $(document).height()) {
-        isLoading = true;
-        $.ajax({
-          url: "{% url 'music_list_lazy' %}?page=" + page,
-          type: 'get',
-          dataType: 'json',
-          beforeSend: function () {
-            var spinner = "<div id=\"loader-section\"><img src=\"{% static 'img/loader.gif' %}\" width=\"75px\" /></div>";
-            $("#mv-list").append(spinner);
-          },
-          success: function (data) {
-            console.log(data.status);
-            if (data.status == "success") {
-              $("#loader-section").remove();
-              $("#mv-list").append(data.data);
-              isLoading = false;
-              page++;
-            } else if (data.status == "error") {
-              $("#loader-section").remove();
-              isLoading = true;
-            }
-          },
-          failure: function (data) {
-            console.log('got an error: forum_updates');
-          }
-        });
-      }
-    }
-  });*/
-</script>
 {% endblock %}
