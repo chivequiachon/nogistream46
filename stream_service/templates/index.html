@@ -9,7 +9,6 @@
     </h1>
     <small>New MVs</small>
   </div>
-  <!--div id="mv-list"-->
   <div id="mv-list">
     {% for mv in mvs %}
     <div>
@@ -28,6 +27,7 @@
 
 <div class="section-divider"></div>
 
+{% if shows %}
 <div class="content-section" style="padding-top: 15px;">
   <div class="title-section">
     <h1>
@@ -36,41 +36,19 @@
     <small>Recommended Shows</small>
   </div>
   <div id="show-list">
+    {% for show in shows %}
     <div>
       <a style="display: -webkit-flex; padding-top: 0px;" href="#">
-        <img src="https://res.cloudinary.com/dr031frrx/image/upload/v1568734174/nogistream/nogichuu.jpg" alt="" />
+        <img src="{{ cloudinary_img_url }}/{{ show.name_in_code|add:'.jpg' }}" alt="" />
       </a>
-      <a href="#">乃木坂工事中</a>
-      <small>Every Sunday 12:00 MN JST</small>
+      <a href="#">{{ show.title }}</a>
+      <small>{{ show.small_info }}</small>
 
-      <p>298 Episodes (ongoing)</p>
+      <p>{{ show.showepisode_set.all.count }} Episode(s)</p>
     </div>
-    <div>
-      <a style="display: -webkit-flex; padding-top: 0px;" href="#">
-        <img src="https://res.cloudinary.com/dr031frrx/image/upload/v1568734725/nogistream/gakutabi.jpg" alt="" />
-      </a>
-      <a href="#">乃木坂46のがくたび！</a>
-      <small>Inconsistent Schedule</small>
-
-      <p>10 Episodes (ongoing)</p>
-    </div>
-    <div>
-      <a style="display: -webkit-flex; padding-top: 0px;" href="#">
-        <img src="https://res.cloudinary.com/dr031frrx/image/upload/v1568735587/nogistream/nogieigo.jpg" alt="" />
-      </a>
-      <a href="#">乃木坂46えいご</a>
-      <small>Inconsistent Schedule</small>
-
-      <p>39 Episodes (ongoing)</p>
-    </div>
-    <div>
-      <img src="https://res.cloudinary.com/dr031frrx/image/upload/v1568735587/nogistream/nogieigo.jpg" alt="" />
-      <a href="#">乃木坂46えいご</a>
-      <small>Inconsistent Schedule</small>
-
-      <p>39 Episodes (ongoing)</p>
-    </div>
+    {% endfor %}
   </div>
 </div>
+{% endif %}
 <script src="{% static 'js/app.js' %}"></script>
 {% endblock %}

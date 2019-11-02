@@ -1,32 +1,28 @@
 {% extends 'base.html'%}
 {% load static %}
 {% block content %}
-{% if mvs %}
 <div id="content" class="content-section" style="padding-top:120px;">
   <div class="title-section">
     <h1>
-      Nogizaka Music
+      Nogizaka Shows
     </h1>
-    <small>All MVs</small>
+    <small>All Shows</small>
   </div>
-  <div id="mv-list">
-    {% for mv in mvs %}
+  <div id="show-list">
     <div>
-      <a style="display: -webkit-flex; padding-top: 0px;" href="{% url 'view_page' name_in_code=mv.name_in_code %}">
-        <img src="{{ cloudinary_img_url }}/{{ mv.name_in_code|add:'.jpg' }}" alt="" />
+      <a style="display: -webkit-flex; padding-top: 0px;" href="#">
+        <img src="https://res.cloudinary.com/dr031frrx/image/upload/v1568734174/nogistream/nogichuu.jpg" alt="" />
       </a>
-      <a href="{% url 'view_page' name_in_code=mv.name_in_code %}">{{ mv.title }}</a>
-      <small>{{ mv.performer_name }}</small>
+      <a href="#">乃木坂工事中</a>
+      <small>Every Sunday 12:00 MN JST</small>
 
-      <p>{{ mv.view_count }} views</p>
+      <p>298 Episodes (ongoing)</p>
     </div>
-    {% endfor %}
   </div>
 </div>
-{% endif %}
 <script src="{% static 'js/app.js' %}"></script>
 <script>
-  var isLoading = false;
+  /*var isLoading = false;
   var page = 2;
   $(window).scroll(function () {
     if (!isLoading) {
@@ -58,6 +54,6 @@
         });
       }
     }
-  });
+  });*/
 </script>
 {% endblock %}

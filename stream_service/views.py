@@ -9,7 +9,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 import requests
 
-from .models import MvInfo
+from .models import MvInfo, ShowInfo
 
 import json
 
@@ -118,17 +118,22 @@ def music_list_page(request):
     else:
         return HttpResponse(status_code=503) # Service Unavailable
 
+def shows_list_page(request):
+    return render(request, "shows.html")
+
 def list_page(request):
     # Retrieve available mvs
     mv_list = MvInfo.objects.filter(is_disabled=False).order_by('published_date')[:8]
     success = retrieve_view_count(mv_list)
+
+    show_list = ShowInfo.objects.filter(is_disabled=False)
 
     if success:
         # Create url for images stored in cloudinary
         cloudinary_img_url = \
             "https://res.cloudinary.com/%s/image/upload/v1555853606/nogistream" % settings.CLOUDINARY_NAME
 
-        return render(request, "index.html", {'mvs': mv_list, 'cloudinary_img_url': cloudinary_img_url})
+        return render(request, "index.html", {'shows': show_list, 'mvs': mv_list, 'cloudinary_img_url': cloudinary_img_url})
     else:
         return HttpResponse(status_code=503) # Service Unavailable
 

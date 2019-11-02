@@ -1,6 +1,9 @@
 from django.db import models
 from django.utils import timezone
 
+####
+# SOURCE: STREAMABLE
+####
 class MvInfo(models.Model):
     title = models.CharField(max_length=100)
     performer_name = models.CharField(max_length=50)
@@ -39,3 +42,64 @@ class MvInfo(models.Model):
 
     def __str__(self):
         return "%s(%s) - %s" % (self.title, self.performer_name, self.name_in_code)
+
+
+class ShowInfo(models.Model):
+    title = models.CharField(max_length=100)
+
+    small_info = models.CharField(max_length=100, default="Enter added info")
+
+    # The name used in urls and cloudinary img files
+    name_in_code = models.CharField(max_length=50)
+
+    is_disabled = models.BooleanField(default=False)
+
+    #num_episodes = models.IntegerField(default=0) // Use django count instead
+
+    # Date published
+    published_date = models.DateTimeField(blank=True, null=True, default=timezone.now)
+
+    def __str__(self):
+        return "%s(%s)" % (self.title, self.name_in_code)
+
+####
+# SOURCE: DAILYMOTION
+####
+class ShowEpisode(models.Model):
+    title = models.CharField(max_length=100)
+    description = models.TextField()
+    
+    show = models.ForeignKey(ShowInfo, on_delete=models.CASCADE, default='1')
+
+    # The name used in urls and cloudinary img files
+    name_in_code = models.CharField(max_length=50)
+
+    # ID for dailymotion
+    episode_id = models.CharField(max_length=15, default="Enter ID here")
+
+    # Link for dailymotion
+    embed_link = models.CharField(max_length=350, default="Enter embed link here")
+
+    is_disabled = models.BooleanField(default=False)
+
+    view_count = models.PositiveIntegerField(default=0)
+
+    # Date published
+    published_date = models.DateTimeField(blank=True, null=True, default=timezone.now)
+
+    # Date of update
+    date_of_update = models.DateTimeField(blank=True, null=True, editable=True, default=timezone.now)
+
+    def should_update_view_count(self):
+        current_hr = int((timezone.now()).strftime("%H"))
+        updated_hr = int(self.date_of_update.strftime("%H"))
+        time_delta = current_hr - updated_hr
+        return time_delta >= 1
+
+    def update_view_count(self):
+        self.view_count = view_count
+        self.date_of_update = timezone.now()
+        self.save()
+
+    def __str__(self):
+        return "%s - %s" % (self.title, self.name_in_code)

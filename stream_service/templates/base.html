@@ -20,11 +20,11 @@
       <ul id="menu">
         <li><a href="{% url 'homepage' %}"><button>HOME</button></a></li>
         <li><a href="{% url 'music_list_page' %}"><button>MUSIC</button></a></li>
-        <li><button>VARIETY SHOWS</button></li>
+        <li><a href="{% url 'shows_list_page' %}"><button>VARIETY SHOWS</button></a></li>
         <li><button>SHOWROOMS</button></li>
         <li><button>GUESTINGS</button></li>
       </ul>
-      <div id="search">
+      <div id="search" style="visibility: hidden;">
         <input type="text" />
         <button>SEARCH</button>
       </div>
@@ -47,8 +47,8 @@
     <nav>
       <ul>
         <li><a href="{% url 'homepage' %}"><button>HOME</button></a></li>
-        <li><button>MUSIC</button></li>
-        <li><button>VARIETY SHOWS</button></li>
+        <li><a href="{% url 'music_list_page' %}"><button>MUSIC</button></a></li>
+        <li><a href="{% url 'shows_list_page' %}"><button>VARIETY SHOWS</button></a></li>
         <li><button>SHOWROOMS</button></li>
         <li><button>GUESTINGS</button></li>
       </ul>
