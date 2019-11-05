@@ -56,7 +56,6 @@ def retrieve_view_count_of_video(video):
     else:
         return True
 
-
 def homepage(request):
     return redirect(reverse('list_page'))
 
@@ -125,6 +124,15 @@ def shows_list_page(request):
         "https://res.cloudinary.com/%s/image/upload/v1555853606/nogistream" % settings.CLOUDINARY_NAME
         
     return render(request, "shows.html", {'shows': show_list, 'cloudinary_img_url': cloudinary_img_url})
+
+def show_info_page(request, name_in_code):
+    show = get_object_or_404(ShowInfo, name_in_code=name_in_code)
+    episodes = show.episodes.all().filter(is_disabled=False)
+    cloudinary_img_url = \
+        "https://res.cloudinary.com/%s/image/upload/v1555853606/nogistream" % settings.CLOUDINARY_NAME
+        
+    return render(request, "show.html", {'show': show, 'episodes': episodes, 'cloudinary_img_url': cloudinary_img_url})
+
 
 def list_page(request):
     # Retrieve available mvs

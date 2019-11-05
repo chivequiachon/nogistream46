@@ -1,0 +1,55 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block content %}
+<div id="variety-show-content-section" style="padding-top: 170px;">
+  <div id="episode-list">
+    <h2 style="padding-left: 5px;">Episode List</h2>
+    <ul>
+      {% for episode in episodes %}
+      <li id="play">
+        <div>
+          <img src="{% static 'img/loader.gif' %}" width="75px" />
+          {{ episode.embed_link | safe }}
+        </div>
+        <p><i class="fas fa-play"></i> {{ episode.title }}</p>
+        <p>{{ episode.video_duration }}</p>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div id="variety-show-info">
+    <img src="{{ cloudinary_img_url }}/{{ show.name_in_code|add:'_big.jpg' }}" alt="">
+    <h2>{{ show.title }}</h2>
+    <h3>{{ show.title_in_japanese }}</h3>
+    <p>{{ show.small_info }}</p>
+  </div>
+</div>
+
+<script src="{% static 'js/app.js' %}"></script>
+<script>
+  function hideGif() {
+    document.getElementById('player-spinner').style.display = 'none';
+  }
+
+  const openPlayer = () => {
+    const playLi = document.getElementById("play");
+    const contentSection = document.getElementById('variety-show-content-section');
+    playLi.addEventListener("click", function (e) {
+      //e = e || window.event;
+      var target = e.target || e.srcElement;
+
+      var player = target.getElementsByTagName("div")[0].cloneNode(true);
+      player.setAttribute("id", "video-player");
+      player.getElementsByTagName("img")[0].setAttribute("id", "player-spinner");
+      document.body.insertBefore(player, contentSection);
+
+      player.addEventListener("click", () => {
+        document.body.removeChild(document.getElementById("video-player"));
+      });
+    });
+
+  };
+
+  openPlayer();
+</script>
+{% endblock %}

@@ -46,6 +46,7 @@ class MvInfo(models.Model):
 
 class ShowInfo(models.Model):
     title = models.CharField(max_length=100)
+    title_in_japanese = models.CharField(max_length=30, default="なし")
 
     small_info = models.CharField(max_length=100, default="Enter added info")
 
@@ -67,22 +68,15 @@ class ShowInfo(models.Model):
 ####
 class ShowEpisode(models.Model):
     title = models.CharField(max_length=100)
-    description = models.TextField()
     
     show = models.ForeignKey(ShowInfo, on_delete=models.CASCADE, default='1', related_name='episodes')
-
-    # The name used in urls and cloudinary img files
-    name_in_code = models.CharField(max_length=50)
-
-    # ID for dailymotion
-    episode_id = models.CharField(max_length=15, default="Enter ID here")
 
     # Link for dailymotion
     embed_link = models.CharField(max_length=350, default="Enter embed link here")
 
     is_disabled = models.BooleanField(default=False)
 
-    view_count = models.PositiveIntegerField(default=0)
+    video_duration = models.CharField(max_length=8, default="00:00:00")
 
     # Date published
     published_date = models.DateTimeField(blank=True, null=True, default=timezone.now)
@@ -90,16 +84,5 @@ class ShowEpisode(models.Model):
     # Date of update
     date_of_update = models.DateTimeField(blank=True, null=True, editable=True, default=timezone.now)
 
-    def should_update_view_count(self):
-        current_hr = int((timezone.now()).strftime("%H"))
-        updated_hr = int(self.date_of_update.strftime("%H"))
-        time_delta = current_hr - updated_hr
-        return time_delta >= 1
-
-    def update_view_count(self):
-        self.view_count = view_count
-        self.date_of_update = timezone.now()
-        self.save()
-
     def __str__(self):
-        return "%s - %s" % (self.title, self.name_in_code)
+        return "%s" % (self.title)

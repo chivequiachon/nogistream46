@@ -107,6 +107,72 @@ body {
   display: flex;
 }
 
+#variety-show-content-section {
+  display: flex;
+  width: 1171px;
+  margin: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 25px;
+}
+
+#episode-list {
+  width: 100%;
+
+}
+
+#episode-list ul {
+  list-style: none;
+  font-size: 15px;
+  height: 420px;
+  overflow-y: scroll;
+}
+
+#episode-list li {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#episode-list li:hover {
+  border-radius: 8px;
+  background-color: rgb(206, 204, 204);
+}
+
+#episode-list li div {
+  display: none;
+}
+
+#variety-show-info {
+  width: 1000px;
+  text-align: center;
+}
+
+#variety-show-info img {
+  border-radius: 8px;
+  box-shadow: 0 0 0 0, 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+  margin-bottom: 15px;
+}
+
+#video-player {
+  background-color: rgba(0, 0, 0, 0.60);
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#video-player img {
+  position: fixed;
+}
+
 .title-section {
   display: flex;
   align-items: baseline;
@@ -161,8 +227,7 @@ body {
 
 #loader-section {
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
+  justify-content: center;
 }
 
 /* SHOWS CONTENT */

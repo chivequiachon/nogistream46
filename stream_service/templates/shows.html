@@ -11,10 +11,11 @@
   <div id="show-list">
     {% for show in shows %}
     <div>
-      <a style="display: -webkit-flex; padding-top: 0px;" href="#">
+      <a style="display: -webkit-flex; padding-top: 0px;"
+        href="{% url 'show_info_page' name_in_code=show.name_in_code %}">
         <img src="{{ cloudinary_img_url }}/{{ show.name_in_code|add:'.jpg' }}" alt="" />
       </a>
-      <a href="#">{{ show.title }}</a>
+      <a href="{% url 'show_info_page' name_in_code=show.name_in_code %}">{{ show.title }}</a>
       <small>{{ show.small_info }}</small>
 
       <p>{{ show.episodes.all.count }} Episode(s)</p>
