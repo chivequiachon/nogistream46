@@ -4,9 +4,9 @@
 <div id="variety-show-content-section" style="padding-top: 170px;">
   <div id="episode-list">
     <h2 style="padding-left: 5px;">Episode List</h2>
-    <ul>
+    <ul id="ul-episodes">
       {% for episode in episodes %}
-      <li id="play">
+      <li>
         <div>
           <img src="{% static 'img/loader.gif' %}" width="75px" />
           {{ episode.embed_link | safe }}
@@ -32,22 +32,25 @@
   }
 
   const openPlayer = () => {
-    const playLi = document.getElementById("play");
+    const ulEpisodes = document.getElementById("ul-episodes");
+    const liEpisodes = ulEpisodes.getElementsByTagName("li");
     const contentSection = document.getElementById('variety-show-content-section');
-    playLi.addEventListener("click", function (e) {
-      //e = e || window.event;
-      var target = e.target || e.srcElement;
 
-      var player = target.getElementsByTagName("div")[0].cloneNode(true);
-      player.setAttribute("id", "video-player");
-      player.getElementsByTagName("img")[0].setAttribute("id", "player-spinner");
-      document.body.insertBefore(player, contentSection);
+    for (i = 0; i < liEpisodes.length; i++) {
+      try { throw i }
+      catch (ii) {
+        liEpisodes[ii].addEventListener('click', () => {
+          var player = liEpisodes[ii].getElementsByTagName("div")[0].cloneNode(true);
+          player.setAttribute('id', 'video-player');
+          player.getElementsByTagName('img')[0].setAttribute('id', 'player-spinner');
+          document.body.insertBefore(player, contentSection);
 
-      player.addEventListener("click", () => {
-        document.body.removeChild(document.getElementById("video-player"));
-      });
-    });
-
+          player.addEventListener('click', () => {
+            document.body.removeChild(document.getElementById('video-player'));
+          });
+        });
+      }
+    }
   };
 
   openPlayer();
