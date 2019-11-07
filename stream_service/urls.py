@@ -8,5 +8,5 @@ urlpatterns = [
     url(r'^musicload/$', views.music_list_lazy_load, name='music_list_lazy'),
     url(r'^shows/$', views.shows_list_page, name='shows_list_page'),
     url(r'^showinfo/(?P<name_in_code>[\w]+)/$', views.show_info_page, name='show_info_page'),
-    url(r'^view/(?P<name_in_code>[\w]+)/$', views.sample_viewpage, name='view_page'),
+    url(r'^view/(?P<name_in_code>[\w]+)/$', views.mv_view_page, name='view_page'),
 ]

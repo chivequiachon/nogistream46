@@ -150,7 +150,7 @@ def list_page(request):
     else:
         return HttpResponse(status_code=503) # Service Unavailable
 
-def sample_viewpage(request, name_in_code):
+def mv_view_page(request, name_in_code):
     video = get_object_or_404(MvInfo, name_in_code=name_in_code)
     success = retrieve_view_count_of_video(video)
     
