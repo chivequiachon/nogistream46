@@ -71,6 +71,8 @@ class ShowEpisode(models.Model):
     
     show = models.ForeignKey(ShowInfo, on_delete=models.CASCADE, default='1', related_name='episodes')
 
+    episode_number = models.PositiveIntegerField(default=0)
+    
     # Link for dailymotion
     embed_link = models.CharField(max_length=350, default="Enter embed link here")
 

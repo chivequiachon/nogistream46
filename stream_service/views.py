@@ -127,7 +127,7 @@ def shows_list_page(request):
 
 def show_info_page(request, name_in_code):
     show = get_object_or_404(ShowInfo, name_in_code=name_in_code)
-    episodes = show.episodes.all().filter(is_disabled=False)
+    episodes = show.episodes.all().filter(is_disabled=False).order_by("-episode_number")
     cloudinary_img_url = \
         "https://res.cloudinary.com/%s/image/upload/v1555853606/nogistream" % settings.CLOUDINARY_NAME
         
